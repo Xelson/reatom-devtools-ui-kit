@@ -15,6 +15,7 @@ const stl = {
     padding: 3px 12px;
     padding-right: 3px;
     box-sizing: border-box;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     height: 32px;
     gap: 4px;
     transition: 100ms all;

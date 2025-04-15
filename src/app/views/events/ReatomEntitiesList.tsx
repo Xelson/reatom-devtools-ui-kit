@@ -27,7 +27,7 @@ export function ReatomEntitiesList() {
               <Stack i={i} title={'8:31:09 PM [607ms]'}>
                 {item.map((itm) => (
                   <ReatomLogEvent
-                    onClick={() => entities.select(itm)}
+                    onClick={() => entities.$current.value === itm ? entities.deselect() : entities.select(itm)}
                     key={itm.name}
                     name={itm.name}
                     type={itm.type}

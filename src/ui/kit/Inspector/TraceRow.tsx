@@ -13,7 +13,7 @@ const stl = {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    padding: 0 12px;
+    padding-right: 2px;
     opacity: 0.4;
   `,
   traceRowValue: css`

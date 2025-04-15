@@ -13,10 +13,18 @@ const stl = {
   sectionTitle: css`
     padding: 4px 8px;
     background-color: var(--level-3);
+    font-weight: bold;
   `,
   sectionContent: css`
-    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
     overflow: auto;
+
+    &:has(code) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   `,
 };
 

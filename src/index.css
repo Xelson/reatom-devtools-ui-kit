@@ -50,6 +50,7 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  height: 100%;
   font-size: 14px;
   color: var(--text);
   background-color: var(--background);
@@ -62,6 +63,10 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+html {
+  height: 100%;
 }
 
 button {

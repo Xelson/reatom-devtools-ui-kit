@@ -13,10 +13,13 @@ const stl = {
     margin: var(--gap, 4px);
     font-size: 14px;
     align-items: flex-start;
-    border-radius: 4px;
+    border-radius: var(--l1);
     cursor: pointer;
     box-sizing: border-box;
     overflow: hidden;
+    border: 1px solid var(--level-5);
+    outline: 2px solid transparent;
+    flex-shrink: 0;
     &:hover {
       background-color: var(--level-1);
     }
@@ -24,6 +27,7 @@ const stl = {
       visibility: visible;
     }
     &[data-active='true'] {
+      outline-color: var(--accent);
       background-color: var(--level-3);
     }
     & > * {
@@ -32,28 +36,32 @@ const stl = {
     }
   `,
   recordName: css`
-    padding: 0 8px;
+    padding: 0 6px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     flex: 1;
+    font-family: monospace;
   `,
   recordType: css`
+    color: #4b4b4b;
     & > svg {
       display: block;
     }
   `,
   recordTitle: css`
+    font-weight: 500;
     padding: 4px 8px;
     flex: 1;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     background-color: var(--level-2);
+    border-bottom: 1px solid var(--level-5);
   `,
   content: css`
     padding: 4px 8px;
-    background-color: var(--level-1);
+
   `,
 };
 
