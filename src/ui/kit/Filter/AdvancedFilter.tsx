@@ -8,6 +8,7 @@ import { NotEqualityIcon } from '../Icons/NotEqualityIcon.tsx';
 import { TrashIcon } from '../Icons/TrashIcon.tsx';
 import { Switch } from '../Switch/index.tsx';
 import { SimpleFilter } from './SimpleFilter.tsx';
+import { useSignal } from '@preact/signals';
 
 const stl = {
   root: css`
@@ -32,6 +33,7 @@ const stl = {
     flex-shrink: 0;
     border-radius: 0;
     background-color: var(--level-2);
+    position: relative;
   `,
   modeBtn: css`
     min-width: 24px;
@@ -61,6 +63,23 @@ const stl = {
     height: 100%;
     background-color: var(--level-6);
   `,
+  colorIndicator: css`
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--level-1);
+  `,
+  colorIndicatorEmpty: css`
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px dashed black;
+  `,
+  colorPicker: css`
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  `
 };
 
 export function AdvancedFilter<T extends ProFilter>({
@@ -72,6 +91,8 @@ export function AdvancedFilter<T extends ProFilter>({
   onRemove: (filter: T) => void;
   onToggle: (filter: T) => void;
 }) {
+  const $color = useSignal<string | null>('');
+
   return (
     <div class={stl.root}>
       <button type="button" class={`${stl.baseBtn} ${stl.controlBtn}`} onClick={() => onToggle(filter)}>
@@ -79,6 +100,19 @@ export function AdvancedFilter<T extends ProFilter>({
       </button>
       <Divider />
       <div class={stl.filterControls}>
+        <button 
+          class={`${stl.baseBtn}`} 
+          onClick={(event) => {
+            if(!$color.value)
+              $color.value = 'var(--accent)'
+            else if(event.ctrlKey)
+              $color.value = null
+          }}
+        >
+          <ColorIndicator color={$color.value} />
+          {$color.value ? <ColorPicker onColorChange={(color) => $color.value = color} /> : null}
+        </button>
+        <Divider />
         <button class={`${stl.baseBtn} ${stl.modeBtn} ${stl.scopeBtn}`}>
           <Switch
             enabled={filter.$searchScope.value === 'name'}
@@ -114,4 +148,28 @@ export function AdvancedFilter<T extends ProFilter>({
 
 function Divider() {
   return <div class={stl.divider} />;
+}
+
+function ColorIndicator({ color }: { color: string | null }) {
+  return (
+    <div
+      style={{ backgroundColor: color || undefined }}
+      class={color ? stl.colorIndicator : stl.colorIndicatorEmpty}
+    />
+  )
+}
+
+function ColorPicker({ onColorChange }: { onColorChange: (color: string) => void }) {
+  return (
+    <input
+      class={stl.colorPicker}
+      type="color"
+      onChange={(e) => onColorChange(e.currentTarget.value)}
+      onClick={e => {
+        if(e.ctrlKey) {
+          e.preventDefault()
+        }
+      }}
+    />
+  )
 }

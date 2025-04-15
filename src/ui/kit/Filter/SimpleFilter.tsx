@@ -32,6 +32,10 @@ const stl = {
       background-color: var(--focus-color);
     }
   `,
+  regexBtn: css`
+    width: 24px;
+    height: 24px;
+  `,
 };
 
 export function SimpleFilter({
@@ -47,7 +51,7 @@ export function SimpleFilter({
         placeholder={placeholder}
         onChange={(e) => onInput(e.currentTarget.value)}
       />
-      <button type="button">
+      <button data-size="sm" type="button">
         <RegexpIcon />
       </button>
     </label>
