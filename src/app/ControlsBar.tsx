@@ -3,13 +3,13 @@ import { AlignJustifyIcon, BracesIcon } from 'lucide-react';
 import { Header } from '../ui/kit/Header';
 import { PauseIcon, PlayIcon, SettingsIcon } from '../ui/kit/Icons';
 import { Switch } from '../ui/kit/Switch';
-import { Tab } from '../ui/kit/Tab';
+import { Tab, TabsList } from '../ui/kit/Tab';
 
 export function ControlsBar() {
   return (
     <Header
       tabs={
-        <>
+        <TabsList>
           <Tab
             label={'Events'}
             onClick={() => console.log('events tab click')}
@@ -22,7 +22,7 @@ export function ControlsBar() {
             active={false}
             icon={<BracesIcon />}
           />
-        </>
+        </TabsList>
       }
       actions={
         <>

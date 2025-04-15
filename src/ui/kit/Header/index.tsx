@@ -1,5 +1,7 @@
 import type { JSX } from 'preact/jsx-runtime';
 import { css } from 'vite-css-in-js';
+import LogoSvg from './logo.svg';
+
 const stl = {
   header: css`
     display: block;
@@ -37,8 +39,6 @@ const stl = {
     gap: 2px;
   `,
 };
-
-import LogoSvg from './logo.svg';
 
 export function Header({ tabs, actions }: { tabs: JSX.Element; actions: JSX.Element }) {
   return (
