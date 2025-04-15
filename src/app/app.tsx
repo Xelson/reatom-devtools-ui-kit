@@ -14,13 +14,15 @@ const stl = {
     flex-flow: column nowrap;
     width: 100%;
     height: 100%;
+    border: 1px solid var(--level-10);
+    border-radius: var(--l3);
+    overflow: hidden;
   `,
   view: css`
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
     height: 100%;
-    background-color: var(--level-2);
     min-height: 0px;
     box-sizing: border-box;
   `,

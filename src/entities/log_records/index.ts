@@ -1,4 +1,4 @@
-import { computed, signal } from "@preact/signals";
+import { computed, signal } from '@preact/signals';
 import mock from './mockData.ts';
 
 interface ActionFiredRecord {

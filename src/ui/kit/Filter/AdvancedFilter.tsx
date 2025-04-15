@@ -1,5 +1,5 @@
 import { css } from 'vite-css-in-js';
-import type { ProFilter } from '#entities'
+import type { ProFilter } from '#entities';
 import { EqualityIcon } from '../Icons/EqualityIcon.tsx';
 import { EyeIcon } from '../Icons/EyeIcon.tsx';
 import { FilterIcon } from '../Icons/FilterIcon.tsx';
@@ -13,46 +13,53 @@ const stl = {
   root: css`
     display: flex;
     flex-flow: row nowrap;
-    background-color: var(--level-2);
-    padding: 2px;
-    margin: 4px;
-    border-radius: 4px;
+    border: 1px solid var(--level-6);
+    border-radius: var(--l2);
     box-sizing: border-box;
-    gap: 4px;
+    overflow: hidden;
   `,
   filterControls: css`
     display: flex;
     flex-flow: row nowrap;
-    margin: 2px 0;
-    gap: 4px;
     flex: 1;
   `,
-  modeBtn: css`
-    min-width: 24px;
-    background-color: var(--level-4);
+  baseBtn: css`
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    flex-shrink: 0;
+    border-radius: 0;
+    background-color: var(--level-2);
+  `,
+  modeBtn: css`
+    min-width: 24px;
   `,
   scopeBtn: css`
-    border-radius: 4px;
-    min-width: 54px;
+    min-width: 56px;
+    font-size: 0.9em;
+    font-family: monospace;
     padding: 0 8px;
     cursor: pointer;
   `,
   controlBtn: css`
-    width: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   `,
   filter: css`
     display: flex;
     flex-flow: row nowrap;
-    background-color: var(--level-4);
-    border-radius: 4px;
     flex: 1;
+    height: 32px;
+
+    & label {
+      border-radius: 0;
+      border: none;
+    }
+  `,
+  divider: css`
+    width: 1px;
+    height: 100%;
+    background-color: var(--level-6);
   `,
 };
 
@@ -67,29 +74,44 @@ export function AdvancedFilter<T extends ProFilter>({
 }) {
   return (
     <div class={stl.root}>
-      <button type="button" class={stl.controlBtn} onClick={() => onToggle(filter)}>
+      <button type="button" class={`${stl.baseBtn} ${stl.controlBtn}`} onClick={() => onToggle(filter)}>
         <EyeIcon />
       </button>
+      <Divider />
       <div class={stl.filterControls}>
-        <Switch
-          enabled={filter.$searchScope.value === 'name'}
-          onClick={() => filter.toggleSearchScope()}
-          iconOn={<div class={`${stl.modeBtn} ${stl.scopeBtn}`}>name</div>}
-          iconOff={<div class={`${stl.modeBtn} ${stl.scopeBtn}`}>payload</div>}
-        />
-        <button type="button" class={stl.modeBtn} onClick={() => filter.toggleInvert()}>
+        <button class={`${stl.baseBtn} ${stl.modeBtn} ${stl.scopeBtn}`}>
+          <Switch
+            enabled={filter.$searchScope.value === 'name'}
+            onClick={() => filter.toggleSearchScope()}
+            iconOn={<div>name</div>}
+            iconOff={<div>payload</div>}
+          />
+        </button>
+        <Divider />
+        <button type="button" class={`${stl.baseBtn} ${stl.modeBtn}`} onClick={() => filter.toggleInvert()}>
           {filter.$inverted.value ? <NotEqualityIcon /> : <EqualityIcon />}
         </button>
+        <Divider />
         <div class={stl.filter}>
-          <SimpleFilter onInput={console.log} placeholder="Filter" />
+          <SimpleFilter onInput={console.log} placeholder="Filter by an expression" />
         </div>
-        <button type="button" class={stl.modeBtn} onClick={() => filter.toggleHighlight()}>
+        <Divider />
+        <button
+          type="button"
+          class={`${stl.baseBtn} ${stl.modeBtn}`}
+          onClick={() => filter.toggleHighlight()}
+        >
           {filter.$highlighted.value ? <HighlighIcon /> : <FilterIcon />}
         </button>
       </div>
-      <button type="button" class={stl.controlBtn} onClick={() => onRemove(filter)}>
+      <Divider />
+      <button type="button" class={`${stl.baseBtn} ${stl.controlBtn}`} onClick={() => onRemove(filter)}>
         <TrashIcon />
       </button>
     </div>
   );
+}
+
+function Divider() {
+  return <div class={stl.divider} />;
 }

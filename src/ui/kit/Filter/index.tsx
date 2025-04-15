@@ -5,6 +5,7 @@ import { PlusIcon } from '../Icons/PlusIcon.tsx';
 import { Switch } from '../Switch/index.tsx';
 import { AdvancedFilter } from './AdvancedFilter.tsx';
 import { SimpleFilter } from './SimpleFilter.tsx';
+import { BrainIcon, RabbitIcon } from 'lucide-react';
 
 const stl = {
   filters: css`
@@ -13,6 +14,9 @@ const stl = {
     width: 100%;
     border-bottom: 1px solid var(--level-4);
     border-top: 1px solid var(--level-4);
+    padding: 10px 6px;
+    box-sizing: border-box;
+    gap: 8px;
   `,
   easy: css`
     display: flex;
@@ -21,13 +25,12 @@ const stl = {
   pro: css`
     width: 100%;
     display: flex;
+    gap: 8px;
     flex-flow: column nowrap;
-    padding: 4px;
   `,
   actions: css`
     margin-bottom: auto;
-    padding: 8px;
-    padding-left: 0;
+    flex-shrink: 0;
   `,
   icon: css`
     display: block;
@@ -52,11 +55,16 @@ const stl = {
     justify-content: center;
   `,
   switch: css`
-    padding: 6px;
-    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: var(--l3);
     border: 1px solid var(--level-4);
     font-size: 0.9em;
     font-weight: 600;
+    height: 32px;
+    width: 64px;
   `,
 };
 
@@ -82,7 +90,9 @@ export function Filter({ onInput }: { onInput: (value: string) => void }) {
               onToggle={() => console.log('toggle')}
               key={pFilter.id}
               filter={pFilter}
-              onRemove={(deletedFilter) => $proFilters.value.filter((f) => f !== deletedFilter)}
+              onRemove={(deletedFilter) => {
+                $proFilters.value = $proFilters.value.filter((f) => f !== deletedFilter);
+              }}
             />
           ))}
           <button
@@ -102,8 +112,16 @@ export function Filter({ onInput }: { onInput: (value: string) => void }) {
           onClick={() => {
             $searchMode.value = $searchMode.value === Mods.Easy ? Mods.Pro : Mods.Easy;
           }}
-          iconOn={<div class={stl.switch}>Easy</div>}
-          iconOff={<div class={stl.switch}>Pro</div>}
+          iconOn={
+            <button title="Current mode: Pro" class={stl.switch}>
+              <BrainIcon /> Pro
+            </button>
+          }
+          iconOff={
+            <button title="Current mode: Easy" class={stl.switch}>
+              <RabbitIcon /> Easy
+            </button>
+          }
         />
       </div>
     </div>

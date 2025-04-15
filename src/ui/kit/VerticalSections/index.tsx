@@ -69,7 +69,7 @@ function onDragStart(
 
     const onMouseMove = (e: MouseEvent) => {
       const shift = Math.ceil(initialY - e.clientY);
-      const changeset: number[] = []
+      const changeset: number[] = [];
       let canContinue = true;
 
       // Apply shift for above panel
@@ -79,7 +79,7 @@ function onDragStart(
         while (i >= 0) {
           const newHeight = initialHeights[i] - aboveShift;
           if (newHeight < minHeight) {
-            changeset[i] = minHeight
+            changeset[i] = minHeight;
             aboveShift = aboveShift - (initialHeights[i] - minHeight);
             i--;
           } else {
@@ -88,8 +88,8 @@ function onDragStart(
             break;
           }
         }
-        return aboveShift === 0
-      })()
+        return aboveShift === 0;
+      })();
       if (!canContinue) return;
 
       // Apply shift for below panel
@@ -108,16 +108,16 @@ function onDragStart(
             break;
           }
         }
-        return belowShift === 0
-      })()
+        return belowShift === 0;
+      })();
       if (!canContinue) return;
 
       // Apply changes
       let section = totalSections;
       while (section >= 0) {
         const finalHeight = changeset[section] ?? initialHeights[section];
-        setSectionHeight(section, finalHeight)
-        section--
+        setSectionHeight(section, finalHeight);
+        section--;
       }
     };
     document.addEventListener('mousemove', onMouseMove);

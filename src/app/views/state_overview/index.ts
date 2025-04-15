@@ -1,1 +1,1 @@
-export { StateOverviewView } from './StateOverviewView'
+export { StateOverviewView } from './StateOverviewView';

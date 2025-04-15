@@ -2,6 +2,9 @@ import type { JSX } from 'preact/jsx-runtime';
 import { css } from 'vite-css-in-js';
 
 const stl = {
+  base: css`
+    display: contents
+  `,
   flashing: css`
     &[data-enabled='false'] {
       color: hsl(0, 100%, 50%);
@@ -23,7 +26,7 @@ export function Switch({
   iconOff: JSX.Element;
 }) {
   return (
-    <div onClick={onClick} data-enabled={enabled} class={flashing ? stl.flashing : ''}>
+    <div onClick={onClick} data-enabled={enabled} class={`${stl.base} ${flashing ? stl.flashing : ''}`}>
       {enabled ? iconOn : iconOff}
     </div>
   );

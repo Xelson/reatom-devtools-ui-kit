@@ -132,7 +132,7 @@ export function Resizable({ children, defaultValue, direction, ...rest }: Resiza
         id="grip"
         class={`${stl.grip} ${stl[direction]}`}
         onMouseDown={onDragStart(rootElRef, { direction, ...rest })}
-        />
+      />
     </div>
   );
 }

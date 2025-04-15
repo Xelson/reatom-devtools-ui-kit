@@ -10,5 +10,5 @@ export { PauseIcon } from './PauseIcon';
 export { PlayIcon } from './PlayIcon';
 export { PlusIcon } from './PlusIcon';
 export { RegexpIcon } from './RegexpIcon';
-export { SlidersIcon } from './SlidersIcon';
+export { SettingsIcon } from './SettingsIcon';
 export { TrashIcon } from './TrashIcon';
