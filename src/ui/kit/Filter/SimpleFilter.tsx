@@ -1,6 +1,6 @@
 import { css } from 'vite-css-in-js';
 import { RegexpIcon } from '../Icons/RegexpIcon.tsx';
-import { SearchIcon } from 'lucide-react';
+import { ReactNode } from 'preact/compat';
 
 const stl = {
   root: css`
@@ -11,7 +11,7 @@ const stl = {
     align-items: center;
     width: 100%;
     border: 1px solid var(--level-4);
-    border-radius: var(--l3);
+    border-radius: var(--l2);
     padding: 3px 12px;
     padding-right: 3px;
     box-sizing: border-box;
@@ -42,10 +42,17 @@ const stl = {
 export function SimpleFilter({
   placeholder,
   onInput,
-}: { placeholder: string; onInput: (value: string) => void }) {
+  startElement,
+  endElement
+}: { 
+  placeholder: string; 
+  onInput: (value: string) => void;
+  startElement?: ReactNode;
+  endElement?: ReactNode;
+}) {
   return (
     <label class={stl.root}>
-      <SearchIcon size="16" />
+      {startElement}
       <input
         class={stl.input}
         type="search"
@@ -55,6 +62,7 @@ export function SimpleFilter({
       <button data-size="sm" type="button">
         <RegexpIcon />
       </button>
+      {endElement}
     </label>
   );
 }

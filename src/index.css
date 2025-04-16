@@ -1,6 +1,6 @@
 :root {
   --contrast: 3;
-  --background: hsla(0, 0%, 0%, 1);
+  --background: #121212;
   --text: hsla(0, 100%, 100%, 0.87);
   --level-0: hsla(0, 0%, 50%, 0.01);
   --level-1: hsla(0, 0%, 50%, calc(1 * var(--contrast) / 100));
@@ -14,10 +14,10 @@
   --level-9: hsla(0, 0%, 50%, calc(9 * var(--contrast) / 100));
   --level-10: hsla(0, 0%, 50%, calc(10 * var(--contrast) / 100));
   --foreground: white;
-  --accent: #6563a3;
-  --l3: 12px;
-  --l2: 10px;
-  --l1: 8px;
+  --l3: 8px;
+  --l2: 6px;
+  --l1: 4px;
+  --accent: #a5a4df;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -30,9 +30,10 @@
     --background: white;
     --text: hsla(0, 0%, 0%, 0.87);
     --foreground: black;
+    --accent: #6563a3;
   }
   a:hover {
-    color: #747bff;
+    color: #b9bdff;
   }
 }
 

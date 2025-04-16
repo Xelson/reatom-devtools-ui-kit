@@ -5,7 +5,7 @@ import { PlusIcon } from '../Icons/PlusIcon.tsx';
 import { Switch } from '../Switch/index.tsx';
 import { AdvancedFilter } from './AdvancedFilter.tsx';
 import { SimpleFilter } from './SimpleFilter.tsx';
-import { BrainIcon, RabbitIcon } from 'lucide-react';
+import { BrainIcon, RabbitIcon, SearchIcon } from 'lucide-react';
 
 const stl = {
   filters: css`
@@ -59,7 +59,7 @@ const stl = {
     align-items: center;
     justify-content: center;
     padding: 6px 12px;
-    border-radius: var(--l3);
+    border-radius: var(--l2);
     border: 1px solid var(--level-4);
     font-size: 0.9em;
     font-weight: 600;
@@ -81,7 +81,7 @@ export function Filter({ onInput }: { onInput: (value: string) => void }) {
     <div class={stl.filters}>
       {$searchMode.value === Mods.Easy ? (
         <div class={stl.easy}>
-          <SimpleFilter placeholder="Filter events by name or state" onInput={onInput} />
+          <SimpleFilter startElement={<SearchIcon size="16" />} placeholder="Filter events by name or state" onInput={onInput} />
         </div>
       ) : (
         <div class={stl.pro}>

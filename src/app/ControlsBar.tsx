@@ -1,5 +1,4 @@
 import { $recording } from '#entities';
-import { AlignJustifyIcon, BracesIcon } from 'lucide-react';
 import { Header } from '../ui/kit/Header';
 import { PauseIcon, PlayIcon, SettingsIcon } from '../ui/kit/Icons';
 import { Switch } from '../ui/kit/Switch';
@@ -14,13 +13,11 @@ export function ControlsBar() {
             label={'Events'}
             onClick={() => console.log('events tab click')}
             active={true}
-            icon={<AlignJustifyIcon />}
           />
           <Tab
             label={'State'}
             onClick={() => console.log('states tab click')}
             active={false}
-            icon={<BracesIcon />}
           />
         </TabsList>
       }

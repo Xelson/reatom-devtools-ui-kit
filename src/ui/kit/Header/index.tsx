@@ -1,6 +1,6 @@
 import type { JSX } from 'preact/jsx-runtime';
 import { css } from 'vite-css-in-js';
-import LogoSvg from './logo.svg';
+import { Logo } from './Logo';
 
 const stl = {
   header: css`
@@ -22,10 +22,18 @@ const stl = {
     gap: 14px;
   `,
   logo: css`
-    width: 32px;
-    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     user-select: none;
     cursor: move;
+    fill: var(--background);
+    color: var(--accent);
+
+    @media (prefers-color-scheme: light) {
+      color: var(--background);
+      fill: #151134;
+    }
   `,
   tabs: css`
     display: flex;
@@ -44,7 +52,9 @@ export function Header({ tabs, actions }: { tabs: JSX.Element; actions: JSX.Elem
   return (
     <div class={stl.header}>
       <div class={stl.start}>
-        <img draggable={false} class={stl.logo} src={LogoSvg} />
+        <div class={stl.logo}>
+          <Logo />
+        </div>
         <div class={stl.tabs}>{tabs}</div>
       </div>
       <div class={stl.actions}>{actions}</div>
